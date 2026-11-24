@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CRACKAVELI – Links</title>
+  <meta name="description" content="Alle Links von CRACKAVELI: Musik, Merch, TikTok, Instagram und YouTube." />
+  <meta property="og:title" content="CRACKAVELI" />
+  <meta property="og:description" content="Musik, Merch und Socials – alles an einem Ort." />
+  <meta name="theme-color" content="#000000" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Theme: Struktur aus dem vorgegebenen Theme, Farben rein Schwarz/Weiß ── */
+    .dark {
+      --background: oklch(0 0 0);
+      --foreground: oklch(1 0 0);
+      --card: oklch(0 0 0);
+      --card-hover: oklch(0.13 0 0);
+      --card-foreground: oklch(1 0 0);
+      --primary: oklch(1 0 0);
+      --primary-foreground: oklch(0 0 0);
+      --muted-foreground: oklch(0.64 0 0);
+      --border: oklch(0.36 0 0);
+      --border-hover: oklch(0.78 0 0);
+      --ring: oklch(1 0 0);
+      --font-sans: Geist, ui-sans-serif, sans-serif, system-ui;
+      --font-mono: "Geist Mono", ui-monospace, monospace;
+      --radius: 0rem;
+      --spacing: 0.25rem;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; border-color: var(--border); }
+
+    html, body { background: var(--background); }
+
+    body {
+      color: var(--foreground);
+      font-family: var(--font-sans);
+      min-height: 100svh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 30rem;
+      margin: 0 auto;
+      /* safe-area: Abstand zu Notch / Dynamic Island / Home-Balken */
+      padding:
+        calc(var(--spacing) * 16 + env(safe-area-inset-top))
+        calc(var(--spacing) * 5 + env(safe-area-inset-right))
+        calc(var(--spacing) * 10 + env(safe-area-inset-bottom))
+        calc(var(--spacing) * 5 + env(safe-area-inset-left));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100svh;
+    }
+
+    /* ── 3D-Logo ─────────────────────────────────────────────────── */
+    .logo-stage {
+      position: relative;
+      width: 186px;
+      height: 124px;            /* Seitenverhältnis des Logos (896 × 599) */
+      perspective: 900px;
+      margin-bottom: calc(var(--spacing) * 12);
+    }
+
+    /* Weicher weißer Schein hinter dem Logo */
+    .logo-stage::before {
+      content: "";
+      position: absolute; inset: -40%;
+      background: radial-gradient(circle, oklch(1 0 0 / 0.10) 0%, transparent 60%);
+      filter: blur(8px);
+    }
+
+    .logo-coin {
+      position: absolute; inset: 0;
+      transform-style: preserve-3d;
+      animation: spin3d 6s linear infinite;
+    }
+
+    /* Jede Ebene ist eine Kopie des Logos – zusammen ergeben sie die Tiefe */
+    .logo-coin img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      backface-visibility: visible;
+    }
+
+    /* Bodenschatten, der mit der Drehung schmaler/breiter wird */
+    .logo-shadow {
+      position: absolute;
+      left: 50%; bottom: -30px;
+      width: 140px; height: 12px;
+      margin-left: -70px;
+      background: radial-gradient(ellipse, oklch(1 0 0 / 0.14) 0%, transparent 70%);
+      animation: shadow 3s ease-in-out infinite;
+    }
+
+    @keyframes spin3d {
+      from { transform: rotateY(0deg); }
+      to   { transform: rotateY(360deg); }
+    }
+    @keyframes shadow {
+      0%, 100% { transform: scaleX(1); opacity: 1; }
+      50%      { transform: scaleX(0.3); opacity: 0.5; }
+    }
+
+    /* ── Schriftzug ─────────────────────────────────────────────── */
+    .wordmark {
+      margin: 0;
+      line-height: 0;
+    }
+    .wordmark img {
+      display: block;
+      width: min(19rem, 78vw);
+      height: auto;
+    }
+
+    /* ── Links ──────────────────────────────────────────────────── */
+    .links {
+      list-style: none;
+      width: 100%;
+      margin-top: calc(var(--spacing) * 11);
+      display: grid;
+      gap: calc(var(--spacing) * 3);
+    }
+
+    .link {
+      display: grid;
+      grid-template-columns: 2.25rem 1fr auto;
+      align-items: center;
+      gap: calc(var(--spacing) * 3);
+      min-height: 4.4rem;       /* alle Buttons gleich hoch, auch ohne Unterzeile */
+      padding: calc(var(--spacing) * 4.5) calc(var(--spacing) * 4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      color: var(--card-foreground);
+      text-decoration: none;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Dezentes Absetzen beim Hover: etwas heller, hellerer Rand, leicht angehoben.
+       Nur auf Geräten mit Maus – sonst bleibt der Effekt am Handy nach dem Tippen "hängen". */
+    @media (hover: hover) {
+      .link:hover {
+        background: var(--card-hover);
+        border-color: var(--border-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 0 0 oklch(1 0 0 / 0.06);
+      }
+      .link:hover .link-arrow { transform: translate(2px, -2px); }
+    }
+    .link:focus-visible {
+      background: var(--card-hover);
+      border-color: var(--border-hover);
+      outline: none;
+    }
+    /* Beim Antippen (Handy) bzw. Klicken: kurz hervorheben und leicht eindrücken */
+    .link:active {
+      background: var(--card-hover);
+      border-color: var(--border-hover);
+      transform: scale(0.985);
+      box-shadow: none;
+      transition-duration: 0.06s;
+    }
+
+    .link-icon {
+      width: 2.25rem; height: 2.25rem;
+      display: grid; place-items: center;
+      border: 1px solid currentColor;
+    }
+    .link-icon svg { width: 1.05rem; height: 1.05rem; }
+
+    .link-text { min-width: 0; }
+    .link-title {
+      display: block;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+    .link-sub {
+      display: block;
+      margin-top: 2px;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .link-arrow {
+      width: 1.1rem; height: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+
+    .pulse {
+      display: inline-block;
+      width: 6px; height: 6px;
+      margin-right: 6px;
+      background: currentColor;
+      vertical-align: 1px;
+      animation: blink 1.4s steps(2, start) infinite;
+    }
+    @keyframes blink { to { visibility: hidden; } }
+
+    /* ── Rabattcodes (Apotheken-Link) ───────────────────────────── */
+    .codes {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 0.25s ease, opacity 0.2s ease, margin 0.25s ease;
+    }
+    .codes > div { overflow: hidden; }
+    .code-row {
+      display: flex;
+      align-items: baseline;
+      gap: calc(var(--spacing) * 2);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+      white-space: nowrap;
+    }
+    .code-row + .code-row { margin-top: 3px; }
+    .code-row b {
+      font-weight: 500;
+      color: var(--foreground);
+      letter-spacing: 0.1em;
+    }
+
+    .link.has-codes:hover .codes,
+    .link.has-codes:focus-visible .codes {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      margin-top: 6px;
+    }
+
+    /* Handy/Touch: kein Hover möglich → Codes immer sichtbar */
+    @media (hover: none) {
+      .link.has-codes .codes { grid-template-rows: 1fr; opacity: 1; margin-top: 6px; }
+    }
+
+    /* Einblenden beim Laden */
+    .reveal { opacity: 0; transform: translateY(8px); animation: reveal 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+    @keyframes reveal { to { opacity: 1; transform: none; } }
+
+    /* ── Fuß ────────────────────────────────────────────────────── */
+    footer {
+      margin-top: auto;
+      padding-top: calc(var(--spacing) * 14);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+      opacity: 0.7;
+      text-align: center;
+    }
+
+    /* ── Handy ──────────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .page {
+        padding-top: calc(var(--spacing) * 12 + env(safe-area-inset-top));
+        padding-left: calc(var(--spacing) * 4 + env(safe-area-inset-left));
+        padding-right: calc(var(--spacing) * 4 + env(safe-area-inset-right));
+      }
+      .logo-stage { width: 168px; height: 112px; margin-bottom: calc(var(--spacing) * 10); }
+      .logo-shadow { bottom: -26px; }
+      .wordmark img { width: min(17.5rem, 76vw); }
+      .links { margin-top: calc(var(--spacing) * 9); gap: calc(var(--spacing) * 2.5); }
+      .link { min-height: 4rem; padding: calc(var(--spacing) * 3.5) calc(var(--spacing) * 3.5); }
+      footer { padding-top: calc(var(--spacing) * 10); }
+    }
+
+    /* Sehr schmale Handys (iPhone SE, kleine Androids) */
+    @media (max-width: 360px) {
+      .logo-stage { width: 150px; height: 100px; }
+      .link { grid-template-columns: 2rem 1fr auto; gap: calc(var(--spacing) * 2.5); }
+      .link-icon { width: 2rem; height: 2rem; }
+      .link-title { font-size: 0.95rem; }
+      .link-sub { letter-spacing: 0.12em; }
+      .code-row { font-size: 0.62rem; letter-spacing: 0.06em; gap: 0 calc(var(--spacing) * 1.5); flex-wrap: wrap; }
+      .code-row b { letter-spacing: 0.06em; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-coin { animation-duration: 24s; }
+      .logo-shadow, .pulse { animation: none; }
+      .reveal { animation: none; opacity: 1; transform: none; }
+      .link:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <div class="logo-stage reveal" aria-hidden="true">
+      <div class="logo-coin" id="coin"></div>
+      <div class="logo-shadow"></div>
+    </div>
+
+    <h1 class="wordmark reveal" style="animation-delay:.08s">
+      <img src="wordmark.png" alt="CRACKAVELI" width="1938" height="312" />
+    </h1>
+
+    <ul class="links">
+
+      <li class="reveal" style="animation-delay:.18s">
+        <a class="link" href="https://crackaveli.lnk.to/alfpsv" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5L8 5.5z"/></svg>
+          </span>
+          <span class="link-text">
+            <span class="link-title">Auf 90er streamen</span>
+            <span class="link-sub"><span class="pulse"></span>Alle Plattformen</span>
+          </span>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </li>
+      <li class="reveal" style="animation-delay:.24s">
+        <a class="link" href="https://crackaveli.de" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M4 7h16l-1.2 13H5.2L4 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+          </span>
+          <span class="link-text">
+            <span class="link-title">Merchstore</span>
+            <span class="link-sub">crackaveli.de</span>
+          </span>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </li>
+
+      <li class="reveal" style="animation-delay:.30s">
+        <a class="link has-codes" href="https://zazaxpress.com" target="_blank" rel="noopener"
+           aria-label="Hol dir den Zaza – Rabattcode für Neukunden WESTBERLIN, für wiederkehrende Kunden WESTBERLIN420">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg>
+          </span>
+          <span class="link-text">
+            <span class="link-title">Hol dir den Zaza</span>
+            <span class="codes">
+              <div>
+                <span class="code-row">Neukunden <b>WESTBERLIN</b></span>
+                <span class="code-row">Wiederkehrend <b>WESTBERLIN420</b></span>
+              </div>
+            </span>
+          </span>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </li>
+
+      <li class="reveal" style="animation-delay:.36s">
+        <a class="link" href="https://www.tiktok.com/@crackaveli_cv" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.59-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>
+          </span>
+          <span class="link-text">
+            <span class="link-title">TikTok</span>
+            <span class="link-sub">@crackaveli_cv</span>
+          </span>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </li>
+
+      <li class="reveal" style="animation-delay:.42s">
+        <a class="link" href="https://www.instagram.com/crackaveli_bln/" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <span class="link-text">
+            <span class="link-title">Instagram</span>
+            <span class="link-sub">@crackaveli_bln</span>
+          </span>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </li>
+
+      <li class="reveal" style="animation-delay:.48s">
+        <a class="link" href="https://www.youtube.com/@CRACKAVELI_BLN/videos" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.77-1.77C18.27 5 12 5 12 5s-6.27 0-7.83.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.77 1.77C5.73 19 12 19 12 19s6.27 0 7.83-.43a2.5 2.5 0 0 0 1.77-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>
+          </span>
+          <span class="link-text">
+            <span class="link-title">YouTube</span>
+            <span class="link-sub">@CRACKAVELI_BLN</span>
+          </span>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </li>
+    </ul>
+
+    <footer>© <span id="year">2026</span> Crackaveli</footer>
+  </main>
+
+  <script>
+    // ── 3D-Logo aufbauen ───────────────────────────────────────────
+    const LOGO = "logo.png";   // weißes Logo auf transparentem Hintergrund
+    const DEPTH = 14;          // Anzahl Ebenen = Dicke des Logos (in px)
+
+    const coin = document.getElementById("coin");
+    for (let i = 0; i < DEPTH; i++) {
+      const img = new Image();
+      img.src = LOGO;
+      img.alt = "";
+      img.draggable = false;
+      const z = i - (DEPTH - 1) / 2;
+      const isFace = i === 0 || i === DEPTH - 1;
+      img.style.transform = `translateZ(${z}px)`;
+      // Innere Ebenen grau → wirkt wie die Kante eines massiven Logos
+      if (!isFace) img.style.filter = "brightness(0.38)";
+      coin.appendChild(img);
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
